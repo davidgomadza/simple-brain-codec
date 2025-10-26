@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brain Codec System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #00ff88;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #00ff88;
+        }
+
+        .panel {
+            background: rgba(0, 40, 80, 0.8);
+            border: 1px solid #00ff88;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        textarea, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            background: #000;
+            color: #00ff88;
+            border: 1px solid #00ff88;
+            font-family: 'Courier New', monospace;
+        }
+
+        button {
+            background: linear-gradient(45deg, #00ff88, #00cc66);
+            color: #000;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #00cc66, #00aa44);
+        }
+
+        .terminal {
+            background: #000;
+            color: #00ff88;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #00ff88;
+            margin: 10px 0;
+        }
+
+        .codec-output {
+            background: #001122;
+            padding: 15px;
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .warning {
+            background: #ff4444;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 Brain Codec System</h1>
+        <div class="warning">
+            ⚠️ THEORETICAL INTERFACE – Based on speculative concepts from "Encyclopedia of Decoding the Brain"
+        </div>
+
+        <div class="panel">
+            <h2>Input Thought Signal</h2>
+            <textarea id="inputSignal" rows="4" placeholder="Enter thought or brain signal..."></textarea>
+            <button onclick="encodeSignal()">Encode Signal</button>
+        </div>
+
+        <div class="panel">
+            <h2>Encoded Output (Electromagnetic Form)</h2>
+            <div class="terminal" id="encodedOutput">
+                > Encoded output will appear here...
+            </div>
+            <button onclick="decodeSignal()">Decode Signal</button>
+        </div>
+
+        <div class="panel">
+            <h2>Decoded Interpretation</h2>
+            <div class="terminal" id="decodedOutput">
+                > Decoded thought will appear here...
+            </div>
+        </div>
+
+        <div class="panel">
+            <h2>CNB Integration</h2>
+            <p>Connect to the CNB Wearable Brain Reader System for advanced processing:</p>
+            <button onclick="connectToCNB()">Connect to CNB</button>
+            <div class="terminal" id="cnbStatus">
+                > CNB not connected...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function encodeSignal() {
+            const input = document.getElementById('inputSignal').value.trim();
+            if (!input) {
+                logEncoded("ERROR: No input signal");
+                return;
+            }
+
+            // Simulate electromagnetic encoding
+            let encoded = btoa(input).split('').reverse().join('');
+            encoded = encoded.replace(/=/g, '~');
+            logEncoded(`ENCODED: ${encoded}`);
+        }
+
+        function decodeSignal() {
+            const encodedText = document.getElementById('encodedOutput').innerText;
+            if (!encodedText.includes('ENCODED:')) {
+                logDecoded("ERROR: No encoded signal found");
+                return;
+            }
+
+            const encoded = encodedText.split('ENCODED: ')[1];
+            let decoded = atob(encoded.split('').reverse().join('').replace(/~/g, '='));
+            logDecoded(`DECODED: "${decoded}"`);
+        }
+
+        function logEncoded(message) {
+            document.getElementById('encodedOutput').innerText = `> ${new Date().toLocaleTimeString()}: ${message}`;
+        }
+
+        function logDecoded(message) {
+            document.getElementById('decodedOutput').innerText = `> ${new Date().toLocaleTimeString()}: ${message}`;
+        }
+
+        function connectToCNB() {
+            const cnbStatus = document.getElementById('cnbStatus');
+            cnbStatus.innerText = "> Connecting to CNB Wearable System...";
+            setTimeout(() => {
+                cnbStatus.innerText = "> Connected to CNB (Theoretical Mode)\n> Use 'Oh Yes, Rejuvenate' to test brain commands.";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
